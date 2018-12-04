@@ -5,7 +5,20 @@
 </head>
 <body>
 	<?php
-	function Enregistre(){
+	function CheckNickname(){
+		$bdd = mysqli_connect("localhost", "root", "", "SiteDeRecontre");
+		$anwser = mysqli_query($bdd, 'SELECT COUNT(*) AS existNickName FROM User WHERE pseudo="'.$_POST['pseudo'].'"');
+		$data = mysqli_fetch_array($anwser);
+
+		if(!($data['existNickName'] == '0')){
+			//echo "NickName already exist\n";
+			echo "<script type=\"text/javascript\">alert(\"NickName already used\"); location=\"connexion.php\"</script>";
+			exit(1);
+		}
+	} 
+
+
+	function Save(){
 		$bdd = new PDO('mysql:host=localhost;dbname=SiteDeRecontre;charset=utf8', 'root', '');	
 
 
@@ -31,7 +44,8 @@
 		}
 	}
 
-	Enregistre();
+	CheckNickname();
+	Save();
 	?>
 
 
