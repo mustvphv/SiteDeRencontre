@@ -15,7 +15,7 @@
 				if(pseudoOk && passwordOk && emailOk){
 					return true;
 				}else{
-					alert("Gros va te faire neculé tié dingue toi ");
+					alert("Erreur");
 					return false;
 				}
 
