@@ -6,9 +6,9 @@
 <body>
 	<?php
 	function CheckNickname(){
-		$bdd = mysqli_connect("localhost", "root", "", "SiteDeRecontre");
+		$bdd    = mysqli_connect("localhost", "root", "", "SiteDeRecontre");
 		$anwser = mysqli_query($bdd, 'SELECT COUNT(*) AS existNickName FROM User WHERE pseudo="'.$_POST['pseudo'].'"');
-		$data = mysqli_fetch_array($anwser);
+		$data   = mysqli_fetch_array($anwser);
 
 		if(!($data['existNickName'] == '0')){
 			//echo "NickName already exist\n";
@@ -25,11 +25,15 @@
 		if(isset($_POST['pseudo']) && empty($_POST['pseudo']) == false && 
 		   isset($_POST['pass'])   && empty($_POST['pass'])   == false &&
 		   isset($_POST['email'])  && empty($_POST['email'])  == false){
+			$pseudo = htmlspecialchars($_POST['pseudo']);
+			$pass   = hash('sha256', htmlspecialchars($_POST['pass']));
+			$email  = htmlspecialchars($_POST['email']);	
+
 			$req = $bdd->prepare('INSERT INTO User(pseudo,password,email) VALUES(:pseudo, :password, :email)');
 			$req->execute(array(
-				'pseudo'   => $_POST['pseudo'],
-				'password' => $_POST['pass'],
-				'email'    => $_POST['email'] 
+				'pseudo'   => $pseudo,
+				'password' => $pass,
+				'email'    => $email 
 			));
 
 			echo "Ok !";
