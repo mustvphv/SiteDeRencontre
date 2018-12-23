@@ -67,8 +67,8 @@
 			/***************************************************************************************
 			 *@method : Fonction qui surligne le background du champ en rouge si il y a une erreur.*
 			 *@param  : Prend en paramètre le champ et le booléen true or false.                   *
-			 *@return : Renvoie un void 	                                                       *
-        	 ***************************************************************************************/
+			 *@return : Renvoie un void                                                            *
+			 ***************************************************************************************/
 			
 			function Highlight(champ, erreur){
 				if(erreur){
