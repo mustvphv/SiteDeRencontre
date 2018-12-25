@@ -18,7 +18,7 @@
 	} 
 
 
-	function Save(){
+	function RegisterClient(){
 		$bdd = new PDO('mysql:host=localhost;dbname=SiteDeRecontre;charset=utf8', 'root', '');	
 
 
@@ -36,7 +36,9 @@
 				'email'    => $email 
 			));
 
-			echo "Ok !";
+			session_start();
+			$_SESSION['pseudo'] = $pseudo;	
+			header('Location: /work/php/setaccount.php');
 	?>	
 	<!--<script type="text/javascript">
 		var tmp = <?php //echo json_encode($_POST['pseudo']);?>;
@@ -44,12 +46,26 @@
 	</script>-->	
 	<?php
 		}else{
-			header('Location: /work/connexion.php');
+			header('Location: /work/php/registration.php');
 		}
 	}
 
-	CheckNickname();
-	Save();
+
+	function SetAccountClient(){
+		$bdd = new PDO('mysql:host=localhost;dbname=SiteDeRecontre;charset=utf8', 'root', '');
+	}
+
+	
+
+
+	//Appel des fonctions 
+	if(isset($_GET['action']) && htmlspecialchars($_GET['action']) == "register"){	
+		CheckNickname();
+		RegisterClient();
+	}
+
+
+
 	?>
 
 

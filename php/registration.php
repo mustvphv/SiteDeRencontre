@@ -6,7 +6,7 @@
 <body>
 	<script type="text/javascript" src="/work/js/controlform.js"> </script>
 
-	<form method="post" action="save_in_bdd.php" onsubmit="return CheckInput(this)">
+	<form method="post" action="save_in_bdd.php?action=register" onsubmit="return CheckInput(this)">
 		<p>
 			<label for="pseudo">Votre Pseudo : </label>
 			<input type="text" name="pseudo" id="pseudo" onblur="CheckBasicInput(this)"/>
