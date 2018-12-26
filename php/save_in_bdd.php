@@ -64,6 +64,10 @@
 		RegisterClient();
 	}
 
+	if(isset($_GET['action']) && htmlspecialchars($_GET['action']) == "setaccount"){
+		SetAccountClient();
+	}
+
 
 
 	?>
