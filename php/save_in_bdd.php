@@ -90,11 +90,6 @@
 		
 		}
 
-		echo $_POST['prefgenre'] ;
-		echo $_POST['prefcouleurspeaux'];
-		echo $_POST['prefpoids'];
-		echo $_POST['prefcouleurschx'];
-
 		if(isset($_POST['prefgenre'])         && empty($_POST['prefgenre'])         == false && 
 		   isset($_POST['prefcouleurspeaux']) && empty($_POST['prefcouleurspeaux'])  == false &&
 		   isset($_POST['prefpoids'])         && empty($_POST['prefpoids'])         == false &&
@@ -105,7 +100,8 @@
 			$prefpoids         = htmlspecialchars($_POST['prefpoids']);
 			$prefcouleurschx   = htmlspecialchars($_POST['prefcouleurschx']);
 
-			$req = $bdd->prepare('INSERT INTO Preferences(pseudo, prefgenre, prefcouleurspeaux, prefpoids, prefcouleurschx)VALUES(:pseudo, :prefgenre, :prefcouleurspeaux, :prefpoids, :prefcouleurschx)');
+			$req = $bdd->prepare('INSERT INTO Preferences(pseudo, prefgenre, prefcouleurspeaux, prefpoids, prefcouleurschx)
+							      VALUES(:pseudo, :prefgenre, :prefcouleurspeaux, :prefpoids, :prefcouleurschx)');
 
 			$req->execute(array(
 				'pseudo'            => $pseudo,
@@ -123,18 +119,19 @@
 	
 
 
-	//Appel des fonctions 
+	/**Appel des fonctions**/ 
+	
+	//dans le cas où l'action est enregistrer le compte 
 	if(isset($_GET['action']) && htmlspecialchars($_GET['action']) == "register"){	
 		CheckNickname();
 		RegisterClient();
 	}
 
+	//dans le cas où l'action est de set un nouveau profile
 	if(isset($_GET['action']) && htmlspecialchars($_GET['action']) == "setaccount"){
 		SetAccountClient();
 	}
-
-
-
+	
 	?>
 
 

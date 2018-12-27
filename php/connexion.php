@@ -7,7 +7,7 @@
 	
 	<!-- Fichier de connection ici l'utilisateur se connecte avec un pseudo et un mot de passe on vérifie ensuite dans la base de données si les champs renseignés sont correcte -->
 
-	<form method="post" action="read_in_bdd.php">
+	<form method="post" action="/work/php/checkuserondb.php">
 		<p>
 			<label for="pseudo"> Votre Pseudo : </label>
 			<input type="text" name="pseudo">
