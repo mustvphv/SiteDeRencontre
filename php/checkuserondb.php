@@ -1,8 +1,12 @@
+<!-- Fichier checkuserondb, qui regarde si les champs rentré par l'utilisateur  pour la connexion d'un cliet sont correctes -->
+
 <!DOCTYPE HTML>
 <html>
 <?php 
 	function CheckDataIsCorrect(){
-		$pseudo   = NULL;
+		session_start();
+        
+        $pseudo   = NULL;
 		$password = NULL;
 
 		if(isset($_POST['pseudo']) && empty($_POST['pseudo']) == false &&
@@ -20,8 +24,9 @@
 		$datadb = $answer->fetch();
 	
 		if($datadb['password'] == $password){
-			session_start();
-        	$_SESSION['id'] = $datadb['id'];
+			$_SESSION['id'] = $datadb['id'];
+        	
+        	//on redirige vers la page compte du client
         	header('location: /work/php/account.php');
     	}else{
 			echo "<script type=\"text/javascript\">alert(\"Champs incorrectes\"); location=\"connexion.php\"</script>";
