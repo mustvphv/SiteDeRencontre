@@ -19,6 +19,7 @@
 
 
 	function RegisterClient(){
+		session_start();
 		$bdd = new PDO('mysql:host=localhost;dbname=SiteDeRecontre;charset=utf8', 'root', '');	
 
 
@@ -29,14 +30,14 @@
 			$pass   = hash('sha256', htmlspecialchars($_POST['pass']));
 			$email  = htmlspecialchars($_POST['email']);	
 
-			$req = $bdd->prepare('INSERT INTO User(pseudo,password,email) VALUES(:pseudo, :password, :email)');
+			$req = $bdd->prepare('INSERT INTO User(pseudo, password, email) 
+								  VALUES(:pseudo, :password, :email)');
 			$req->execute(array(
 				'pseudo'   => $pseudo,
 				'password' => $pass,
 				'email'    => $email 
 			));
 
-			session_start();
 			$_SESSION['pseudo'] = $pseudo;	
 			header('Location: /work/php/setaccount.php');
 	?>	
@@ -52,7 +53,71 @@
 
 
 	function SetAccountClient(){
+		session_start();
 		$bdd = new PDO('mysql:host=localhost;dbname=SiteDeRecontre;charset=utf8', 'root', '');
+
+		if(isset($_POST['region'])      && empty($_POST['region'])      == false &&
+		   isset($_POST['departement']) && empty($_POST['departement']) == false){
+			$pseudo      = $_SESSION['pseudo'];
+			$region      = htmlspecialchars($_POST['region']);
+			$departement = htmlspecialchars($_POST['departement']);
+
+			$req = $bdd->prepare('INSERT INTO Localisation(pseudo, region, departement) 
+								  VALUES(:pseudo, :region, :departement)');
+			$req->execute(array(
+				'pseudo'      => $pseudo,
+				'region'      => $region,
+				'departement' => $departement	 
+			));
+		}	
+		
+		if(isset($_POST['clientgenre'])         && empty($_POST['clientgenre'])         == false && 
+		   isset($_POST['clientpoids'])         && empty($_POST['clientpoids'])         == false && 
+		   isset($_POST['clientcouleurspeaux']) && empty($_POST['clientcouleurspeaux']) == false){
+			$pseudo              = $_SESSION['pseudo'];
+			$clientgenre         = htmlspecialchars($_POST['clientgenre']);
+			$clientpoids         = htmlspecialchars($_POST['clientpoids']);
+			$clientcouleurspeaux = htmlspecialchars($_POST['clientcouleurspeaux']);		
+			
+			$req = $bdd->prepare('INSERT INTO Physique(pseudo, clientgenre, clientpoids, clientcouleurspeaux)
+								  VALUES(:pseudo, :clientgenre, :clientpoids, :clientcouleurspeaux)');
+			$req->execute(array(
+				'pseudo'              => $pseudo,
+				'clientgenre'         => $clientgenre,
+				'clientpoids'         => $clientpoids,
+				'clientcouleurspeaux' => $clientcouleurspeaux
+			));
+		
+		}
+
+		echo $_POST['prefgenre'] ;
+		echo $_POST['prefcouleurspeaux'];
+		echo $_POST['prefpoids'];
+		echo $_POST['prefcouleurschx'];
+
+		if(isset($_POST['prefgenre'])         && empty($_POST['prefgenre'])         == false && 
+		   isset($_POST['prefcouleurspeaux']) && empty($_POST['prefcouleurspeaux'])  == false &&
+		   isset($_POST['prefpoids'])         && empty($_POST['prefpoids'])         == false &&
+		   isset($_POST['prefcouleurschx'])   && empty($_POST['prefcouleurschx'])   == false){
+			$pseudo            = $_SESSION['pseudo'];
+			$prefgenre         = htmlspecialchars($_POST['prefgenre']);	
+			$prefcouleurspeaux = htmlspecialchars($_POST['prefcouleurspeaux']);
+			$prefpoids         = htmlspecialchars($_POST['prefpoids']);
+			$prefcouleurschx   = htmlspecialchars($_POST['prefcouleurschx']);
+
+			$req = $bdd->prepare('INSERT INTO Preferences(pseudo, prefgenre, prefcouleurspeaux, prefpoids, prefcouleurschx)VALUES(:pseudo, :prefgenre, :prefcouleurspeaux, :prefpoids, :prefcouleurschx)');
+
+			$req->execute(array(
+				'pseudo'            => $pseudo,
+				'prefgenre'         => $prefgenre,
+				'prefcouleurspeaux' => $prefcouleurspeaux,
+				'prefpoids'         => $prefpoids,
+				'prefcouleurschx'   => $prefcouleurschx
+			));
+
+		}	
+			
+		
 	}
 
 	
