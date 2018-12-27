@@ -15,6 +15,7 @@
 				$datadb = $answer->fetch();
 		?>		
 		<script type="text/javascript">
+			//conversion php to js 
 			var pseudo = <?php echo json_encode($datadb['pseudo']); ?>;
 			var email  = <?php echo json_encode($datadb['email']);  ?>;
 			//console.log(pseudo, email); (Ok)
