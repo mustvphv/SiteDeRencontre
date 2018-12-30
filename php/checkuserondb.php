@@ -1,4 +1,4 @@
-<!-- Fichier checkuserondb, qui regarde si les champs rentré par l'utilisateur  pour la connexion d'un cliet sont correctes -->
+<!-- Fichier checkuserondb, qui regarde si les champs rentré par l'utilisateur  pour la connexion d'un client sont correctes -->
 
 <!DOCTYPE HTML>
 <html>
