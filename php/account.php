@@ -14,14 +14,25 @@
          		session_start();
             	$id = htmlspecialchars($_SESSION['id']);
        			
-       			
-
-         		$bdd    = new PDO('mysql:host=localhost;dbname=SiteDeRecontre;charset=utf8', 'root', '');
+       			$bdd    = new PDO('mysql:host=localhost;dbname=SiteDeRecontre;charset=utf8', 'root', '');
 				$answer = $bdd->query('SELECT * FROM User WHERE id="'.$id.'"');
 				$datadb = $answer->fetch();
 		
 				$pseudoclient = htmlspecialchars($datadb['pseudo']);
 
+				//Réponses des informations du client courrant  connecté.
+				$reponseClientUser         = $bdd->query('SELECT * FROM User WHERE pseudo="'.$pseudoclient.'"');
+				$reponseClientLocalisation = $bdd->query('SELECT * FROM Localisation WHERE pseudo="'.$pseudoclient.'"'); 
+				$reponseClientPhysique     = $bdd->query('SELECT * FROM Physique WHERE pseudo="'.$pseudoclient.'"');
+				$reponseClientPreferences  = $bdd->query('SELECT * FROM Preferences WHERE pseudo="'.$pseudoclient.'"');	
+				
+				//on fetch les données directement car il y a qu'une ligne dans la table.
+				$valueClientUser         = $reponseClientUser->fetch();
+				$valueClientLocalisation = $reponseClientLocalisation->fetch();
+				$valueClientPhysique     = $reponseClientPhysique->fetch();
+				$valueClientPreferences  = $reponseClientPreferences->fetch();
+
+				// Réponses des informations de tous les clients sauf le client courrant.
 				$reponseUser         = $bdd->query('SELECT * FROM User WHERE pseudo!="'.$pseudoclient.'"');
 				$reponseLocalisation = $bdd->query('SELECT * FROM Localisation WHERE pseudo!="'.$pseudoclient.'"'); 
 				$reponsePhysique     = $bdd->query('SELECT * FROM Physique WHERE pseudo!="'.$pseudoclient.'"');
@@ -29,27 +40,39 @@
 		?>
 		
 		<script type="text/javascript">	
-				// je crée l'objet Map
 				var clientsMap = new Map;
 				var pseudoclients = [];
+				//Nouveau map 
+				var clientCourrantMap    = new Map;
+				var pseudoclientCourrant = <?php echo json_encode($pseudoclient);?> ;  
+
+				//on set un map avec les informations du client courrant. 
+				clientCourrantMap.set(pseudoclientCourrant                                   ,
+					[<?php echo json_encode($valueClientUser['email']);                   ?> , 
+					<?php echo json_encode($valueClientLocalisation['departement']); 	  ?> ,
+					<?php echo json_encode($valueClientLocalisation['region']); 		  ?> ,
+					<?php echo json_encode($valueClientPhysique['clientgenre']); 		  ?> ,
+					<?php echo json_encode($valueClientPhysique['clientpoids']);          ?> ,
+					<?php echo json_encode($valueClientPhysique['clientcouleurspeaux']);  ?> ,
+					<?php echo json_encode($valueClientPreferences['prefgenre']);         ?> ,
+					<?php echo json_encode($valueClientPreferences['prefcouleurspeaux']); ?> ,
+					<?php echo json_encode($valueClientPreferences['prefpoids']);         ?> ,
+					<?php echo json_encode($valueClientPreferences['prefcouleurschx']);   ?>
+					]);
+
+
 		</script>	
 		
 		<?php		
-			
+				// on set un map avec les informations des autres clients.
 				while($valueUser = $reponseUser->fetch()){
 					$valueLocalisation = $reponseLocalisation->fetch();		
 					$valuePhysique     = $reponsePhysique->fetch();  
 					$valuePreferences  = $reponsePreferences->fetch();
 		?>		
 					<script type="text/javascript">
-					//je crée une liste où se trouvera les pseudos(clés) pour que tu évites de faire du php.
 					pseudoclients.push(<?php echo json_encode($valueUser['pseudo']);?>);
 					
-					/* le premier champs est la clé ici c'est le pseudo.
-					 * la clé pointe sur une liste où tu trouves tous les autres champs
-					 * pour avoir la liste tu fais clientsMap.get(nomddupseudo)
-					 * C'est pas très propre en vrai cette methode tu regarderas ce que ca fais dans le code
-					 * source de la page mais bon...*/	
 					clientsMap.set(<?php echo json_encode($valueUser['pseudo']); 	    ?> , 
 						[<?php echo json_encode($valueUser['email']);                   ?> , 
 						<?php echo json_encode($valueLocalisation['departement']); 	    ?> ,
@@ -76,6 +99,8 @@
 
 		<script type="text/javascript">
 			// algo de matching
+			console.log(clientCourrantMap);
+			console.log(clientsMap);
 
 		</script>
 
