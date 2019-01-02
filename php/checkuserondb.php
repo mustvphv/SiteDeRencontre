@@ -27,7 +27,7 @@
 			$_SESSION['id'] = $datadb['id'];
         	
         	//on redirige vers la page compte du client
-        	header('location: /work/php/account.php');
+        	header('location: /work/php/account.php?action=display');
     	}else{
 			echo "<script type=\"text/javascript\">alert(\"Champs incorrectes\"); location=\"connexion.php\"</script>";
 			exit(1);
