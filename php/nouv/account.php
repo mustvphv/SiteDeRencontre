@@ -2,7 +2,11 @@
 
 <!-- Essaye de corrigé les soucis de indentations dans tes fonctions je sais pas si c'est la transition entre mes modifications
     et les tiennes qui cassent tout mais bon. J'ai rajouté une fonction Display pour afficher les informations du compte 
-    du client qui est connecté. En php ensuite je fais des conditions en modifiant l'url avec certains variables pour bien séparé le moment où j'affiche le comtpe l'utilisateur et les résultats de l'algo de matching. Ensuite faut que tu enlèves le document write qui affiche la photo dans les résultats on s'en fou et cest pas important. Ensuite si tu peux, essaye de mettre une majuscule a sur la première lettre de tes fonctions pour bien qu'on sache que c'est une fonction et pas une variable voilà.-->  
+    du client qui est connecté. En php ensuite je fais des conditions en modifiant l'url avec certains variables pour bien
+    séparé le moment où j'affiche le comtpe l'utilisateur et les résultats de l'algo de matching. Ensuite faut que tu enlèves
+    le document write qui affiche la photo dans les résultats on s'en fou et cest pas important. Ensuite si tu peux, essaye de
+    mettre une majuscule a sur la première lettre de tes fonctions pour bien qu'on sache que c'est une fonction et pas une
+    variable voilà.-->  
 
 <!DOCTYPE HTML>
 <html>
