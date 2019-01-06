@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    
     <link rel="stylesheet" type="text/css" href="/work/css/style.css">   
     <title>Site de Rencontre</title>
 
 </head>
+
 <body>
 	<script type="text/javascript" src="/work/js/controlform.js"> </script>
 
@@ -22,7 +24,6 @@
 			<input type="submit" value="Valider"/>
 		</p>
 	</form>
-
-	
 </body>
+
 </html>
