@@ -1,5 +1,5 @@
 body {
-    background-image: url("../img/img3.jpg");
+    background-image: url("../img/img7.jpg");
 }
 
 #bordureEtimage_polaroid {
@@ -47,5 +47,67 @@ input, select {
     border-radius: 5px;
     width: 200px;
     box-shadow: 1px 1px 2px #C0C0C0 inset;
+}
+
+/*SWIPE_CSS*/
+
+
+.composant_total{
+  width: 550px;
+  margin: auto;
+  position: relative;
+  height: 550px;
+}
+.composants_swipe{
+  border-radius: 20px;
+  box-shadow: 1em 1em 1em 20px gold;
+  padding: 20px;
+  width: 500px;
+  height: 360px;
+  top: 50px;
+  left: 50px;
+  position: absolute;
+}
+.swipe_gauche {
+  transform: rotate(300deg) scale(1.8);
+  transition: 1s;
+  margin-left: 500px;
+  opacity: 0;
+  z-index: 50;
+}
+.swipe_droit {
+  transform: rotate(-30deg) scale(0.8);
+  transition: 1s;
+  opacity: 0;
+  margin-left: -500px;
+  z-index: 10;
+}
+
+.like {
+  transform: rotate(30deg) scale(3.5);
+  transition: 5s;
+  margin-left: 500px;
+  opacity: 0;
+  z-index: 50;
+}
+
+.client:after{
+  font-weight: bold;
+  font-size:110%;
+  content: "Laura";
+  margin: 350px;
+  top:50px;
+  color: blue;
+}
+
+.client{
+  background: white;
+  width: 320px;
+  height: 320px;
+  display: block;
+  margin-top: 15px;
+  margin-left: 15px;
+  background-repeat: no-repeat; /*l'image n'est pas répétée*/
+  background-image: url("../img/img3.jpg");
 }
 
