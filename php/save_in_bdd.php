@@ -111,9 +111,11 @@
 				'prefcouleurschx'   => $prefcouleurschx
 			));
 
-		}	
+		}
+
 			
-		
+		echo "<script type=\"text/javascript\">alert(\"Inscription reussie, connectez-vous!\"); location=\"connexion.php\"</script>";
+		exit(1);
 	}
 
 	
