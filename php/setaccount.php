@@ -2,7 +2,8 @@
 <html>
 	
 	<head>
-		<title>Site de Rencontre</title>
+		<link rel="stylesheet" type="text/css" href="/work/css/style.css">
+        <title>Site de Rencontre</title>
 	</head>
 	
 	<body>
