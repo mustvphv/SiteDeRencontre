@@ -16,7 +16,8 @@ Puis: "mkdir work"
 Puis: "cd work"
 Puis: "git clone https://github.com/CryTime/SiteDeRencontre"
 
-Ensuite, vous devez également importer la base de données en vous connectant à "localhost/phpmyadmin/" 
+Ensuite, vous devez également importer la base de données en vous connectant à "localhost/phpmyadmin/".
+Il faut creer une nouvelle base de données avec le nom "SiteDeRecontre", une fois créer il faut importer les tables 
 en cliquant sur le boutton "Importer" puis "Parcourir..." avec le fichier "SiteDeRecontre.sql", à l'adresse:
 "https://github.com/CryTime/SiteDeRencontre/tree/master/sql/".
 
