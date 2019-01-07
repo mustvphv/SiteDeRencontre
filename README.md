@@ -12,9 +12,10 @@ Une fois l'installation terminée, il faut allumer xampp:
 il faut faire les commandes suivantes: "cd /opt/lampp/".
 Puis: "sudo ./lampp start"
 Puis: "cd htdocs"
-Puis: "mkdir work"
-Puis: "cd work"
 Puis: "git clone https://github.com/CryTime/SiteDeRencontre"
+Puis: "mv SiteDeRencontre work"
+Puis: "cd work"
+
 
 Ensuite, vous devez également importer la base de données en vous connectant à "localhost/phpmyadmin/".
 Il faut creer une nouvelle base de données avec le nom "SiteDeRecontre", une fois créer il faut importer les tables 
