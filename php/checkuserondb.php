@@ -4,9 +4,9 @@
 <html>
 <?php 
         /***************************************************************************************
-        *@method CheckDataIsCorrect: Fonction qui vérifie si il existe un client.*
-        *@param  void: void                                              *
-        *@return : Renvoie un void                                                        *
+        *@method CheckDataIsCorrect: Fonction qui vérifie si il existe un client.              *
+        *@param  void: void                                                                    *
+        *@return : Renvoie un void                                                             *
         ***************************************************************************************/
 	function CheckDataIsCorrect(){
 		session_start();
