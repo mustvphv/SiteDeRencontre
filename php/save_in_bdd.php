@@ -5,11 +5,15 @@
 </head>
 <body>
 	<?php
+        /***************************************************************************************
+        *@method CheckNickname: Fonction qui vérifie si il n'y a pas déjà un pseudo existant.*
+        *@param  void: void                                              *
+        *@return : Renvoie un void                                                        *
+        ***************************************************************************************/
 	function CheckNickname(){
 		$bdd    = mysqli_connect("localhost", "root", "", "SiteDeRecontre");
 		$anwser = mysqli_query($bdd, 'SELECT COUNT(*) AS existNickName FROM User WHERE pseudo="'.$_POST['pseudo'].'"');
 		$data   = mysqli_fetch_array($anwser);
-
 		if(!($data['existNickName'] == '0')){
 			//echo "NickName already exist\n";
 			echo "<script type=\"text/javascript\">alert(\"NickName already used\"); location=\"registration.php\"</script>";
@@ -17,19 +21,20 @@
 		}
 	} 
 
-
+        /***************************************************************************************
+        *@method RegisterClient: Fonction qui enregistre le pseudo, l'email et hash le mot de passe.*
+        *@param  void: void                                              *
+        *@return : Renvoie un void                                                        *
+        ***************************************************************************************/
 	function RegisterClient(){
 		session_start();
 		$bdd = new PDO('mysql:host=localhost;dbname=SiteDeRecontre;charset=utf8', 'root', '');	
-
-
 		if(isset($_POST['pseudo']) && empty($_POST['pseudo']) == false && 
 		   isset($_POST['pass'])   && empty($_POST['pass'])   == false &&
 		   isset($_POST['email'])  && empty($_POST['email'])  == false){
 			$pseudo = htmlspecialchars($_POST['pseudo']);
 			$pass   = hash('sha256', htmlspecialchars($_POST['pass']));
 			$email  = htmlspecialchars($_POST['email']);	
-
 			$req = $bdd->prepare('INSERT INTO User(pseudo, password, email) 
 								  VALUES(:pseudo, :password, :email)');
 			$req->execute(array(
@@ -37,7 +42,6 @@
 				'password' => $pass,
 				'email'    => $email 
 			));
-
 			$_SESSION['pseudo'] = $pseudo;	
 			header('Location: /work/php/setaccount.php');
 	?>	
@@ -51,17 +55,19 @@
 		}
 	}
 
-
+        /***************************************************************************************
+        *@method SetAccountClient: Fonction qui enregistre les préférences, localisation dans les différentes tables de la base de données.*
+        *@param  void: void                                              *
+        *@return : Renvoie un void                                                        *
+        ***************************************************************************************/
 	function SetAccountClient(){
 		session_start();
 		$bdd = new PDO('mysql:host=localhost;dbname=SiteDeRecontre;charset=utf8', 'root', '');
-
 		if(isset($_POST['region'])      && empty($_POST['region'])      == false &&
 		   isset($_POST['departement']) && empty($_POST['departement']) == false){
 			$pseudo      = $_SESSION['pseudo'];
 			$region      = htmlspecialchars($_POST['region']);
 			$departement = htmlspecialchars($_POST['departement']);
-
 			$req = $bdd->prepare('INSERT INTO Localisation(pseudo, region, departement) 
 								  VALUES(:pseudo, :region, :departement)');
 			$req->execute(array(
@@ -89,7 +95,6 @@
 			));
 		
 		}
-
 		if(isset($_POST['prefgenre'])         && empty($_POST['prefgenre'])         == false && 
 		   isset($_POST['prefcouleurspeaux']) && empty($_POST['prefcouleurspeaux'])  == false &&
 		   isset($_POST['prefpoids'])         && empty($_POST['prefpoids'])         == false &&
@@ -99,10 +104,8 @@
 			$prefcouleurspeaux = htmlspecialchars($_POST['prefcouleurspeaux']);
 			$prefpoids         = htmlspecialchars($_POST['prefpoids']);
 			$prefcouleurschx   = htmlspecialchars($_POST['prefcouleurschx']);
-
 			$req = $bdd->prepare('INSERT INTO Preferences(pseudo, prefgenre, prefcouleurspeaux, prefpoids, prefcouleurschx)
 							      VALUES(:pseudo, :prefgenre, :prefcouleurspeaux, :prefpoids, :prefcouleurschx)');
-
 			$req->execute(array(
 				'pseudo'            => $pseudo,
 				'prefgenre'         => $prefgenre,
@@ -110,17 +113,12 @@
 				'prefpoids'         => $prefpoids,
 				'prefcouleurschx'   => $prefcouleurschx
 			));
-
 		}
-
 			
 		echo "<script type=\"text/javascript\">alert(\"Inscription reussie, connectez-vous!\"); location=\"connexion.php\"</script>";
 		exit(1);
 	}
-
 	
-
-
 	/**Appel des fonctions**/ 
 	
 	//dans le cas où l'action est enregistrer le compte 
@@ -128,7 +126,6 @@
 		CheckNickname();
 		RegisterClient();
 	}
-
 	//dans le cas où l'action est de set un nouveau profile
 	if(isset($_GET['action']) && htmlspecialchars($_GET['action']) == "setaccount"){
 		SetAccountClient();
