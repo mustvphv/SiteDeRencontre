@@ -1,18 +1,16 @@
-<!-- Fichier account ce fichier montre les informations du client.-->
-<!-- Essaye de corrigé les soucis de indentations dans tes fonctions je sais pas si c'est la transition entre mes modifications
-    et les tiennes qui cassent tout mais bon. J'ai rajouté une fonction Display pour afficher les informations du compte 
-    du client qui est connecté. En php ensuite je fais des conditions en modifiant l'url avec certains variables pour bien séparé le moment où j'affiche le comtpe l'utilisateur et les résultats de l'algo de matching. Ensuite faut que tu enlèves le document write qui affiche la photo dans les résultats on s'en fou et cest pas important. Ensuite si tu peux, essaye de mettre une majuscule a sur la première lettre de tes fonctions pour bien qu'on sache que c'est une fonction et pas une variable voilà.-->  
-
 <!DOCTYPE HTML>
 <html>
     <title>Site de Rencontre</title>
     <head><link rel="stylesheet" type="text/css" href="/work/css/style.css"></head>
     <body>
 
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="https://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
         <?php
-	       
+	      
+          /***************************************************************************************
+          *@method DisplayProfile: Affiche le profile d'un client.*
+          *@param  void: void                                              *
+          *@return : Renvoie un void                                                        *
+          ***************************************************************************************/
            function DisplayProfile(){
          		session_start();
             	$id = htmlspecialchars($_SESSION['id']);
@@ -35,9 +33,9 @@
 				$valueClientPreferences  = $reponseClientPreferences->fetch();
 				// Réponses des informations de tous les clients sauf le client courrant.
 				$reponseUser         = $bdd->query('SELECT * FROM User WHERE pseudo!="'.$pseudoclient.'"');
-				$reponseLocalisation = $bdd->query('SELECT * FROM Localisation WHERE pseudo!="'.$pseudoclient.'"'); 
+				$reponseLocalisation = $bdd->query('SELECT * FROM Localisation WHERE pseudo!="'.$pseudoclient.'"');
 				$reponsePhysique     = $bdd->query('SELECT * FROM Physique WHERE pseudo!="'.$pseudoclient.'"');
-				$reponsePreferences  = $bdd->query('SELECT * FROM Preferences WHERE pseudo!="'.$pseudoclient.'"');	
+				$reponsePreferences  = $bdd->query('SELECT * FROM Preferences WHERE pseudo!="'.$pseudoclient.'"');
 		?>
 		
 		<script type="text/javascript">	
@@ -106,8 +104,14 @@
             console.log(clientCourrantMap.get(pseudoCourant));
             console.log(clientCourrantMap.get(pseudoCourant)[0]);
             console.log(clientsMap);
-                         
-            function Algorithme_de_Matching(client1, client2){
+                
+           /***************************************************************************************
+           *@method AlgorithmeDeMatching: Fonction qui gère l'algorithme de matching (les affinités entre deux clients (les deux paramètres)).*
+           *@param  client1: pseudo du client connecté (client courant)                                             *
+           *@param  client2: pseudo d'un des autres clients                                             *
+           *@return : Renvoie la valeur des points d'affinités (plus elle est élevée, plus il y a d'affinités entre les deux clients comparés                   *
+           ***************************************************************************************/         
+            function AlgorithmeDeMatching(client1, client2){
                 var somme_affinites = 0;
                 if(client1[1] == client2[1]){//comparaison département
                     somme_affinites += 20;
@@ -129,7 +133,14 @@
                 }
                 return somme_affinites;
             }
-            function comparer_valeurs(val1, val2) {
+
+          /***************************************************************************************
+          *@method ComparerValeurs: Permet de trier le tableau "resultatsComparaisonsTableau" dans l'ordre décroissant .*
+          *@param  val1: première valeur à comparer                                         *
+          *@param  val2: seconde valeur à comparer                                         *
+          *@return : Renvoie la différence entre la deuxième valeur et la première valeur.                                                       *
+          ***************************************************************************************/
+            function ComparerValeurs(val1, val2) {
                 var nouv_val1_str = val1.split('|');
                 var nouv_val2_str = val2.split('|');
                 var nouv_val1 = nouv_val1_str[0];
@@ -143,16 +154,21 @@
                
         <script type="text/javascript">                
                         var iteratif_client_important = [];
+                        /***************************************************************************************
+                        *@method FonctionMatching(): Fonction qui va lancer tous le processus du matching, de l'algorithme du matching aux comparaisons des résultats d'affinités entre les clients et l'affichage graphique.*
+                        *@param  void: void                                     *
+                        *@return : void.                                                       *
+                        ***************************************************************************************/
                         function FonctionMatching(){
                             
-            				var resultatsComparaisonsTableau = [];
+                            var resultatsComparaisonsTableau = [];
                             for (var i = 0; i < clientsMap.size; ++i){
-                                var resultat = Algorithme_de_Matching(clientCourrantMap.get(pseudoCourant), clientsMap.get(pseudoclients[i]));
+                                var resultat = AlgorithmeDeMatching(clientCourrantMap.get(pseudoCourant), clientsMap.get(pseudoclients[i]));
                                 console.log("resultat=" + resultat);
                                 document.write('<p>' + 'Résultat algo pour comparaison client "' + pseudoCourant + '" et client "' + pseudoclients[i] + '"=' + resultat + '</p>');
                                 resultatsComparaisonsTableau.push(resultat+'|'+i);
                             }
-                            resultatsComparaisonsTableau.sort(comparer_valeurs);
+                            resultatsComparaisonsTableau.sort(ComparerValeurs);
                             document.write('<p>' + "tableauxTAILLE=" + resultatsComparaisonsTableau.length + "<br><br>" + '</p>');
                             console.log("tableaux de comparaisons" + resultatsComparaisonsTableau);
                             
@@ -172,7 +188,12 @@
                         }
 		</script>
         
-        <script type="text/javascript">                
+        <script type="text/javascript">     
+          /***************************************************************************************
+          *@method Display: affichage graphique des informations du client connecté .*
+          *@param  void: void                                         *
+          *@return : Renvoie un void                                                    *
+          ***************************************************************************************/
         function Display(){
             var age_recup = 25; //âge à récupérer
              
@@ -181,7 +202,7 @@
             document.write("<form method='post' action='account.php?action=matching'> <input type='submit' class = 'bouton1'>Trouver des personnes qui ont des affinités avec vous grâce à l'algorithme de matching</input></form>");
             document.write('<p>' + "Polaroïd: <br><br><br>" + '</p>');
             document.write('<p>' + pseudoCourant + ", " + age_recup + " ans<br><br>" + "Autres Infos: <br><br>" + '</p>');
-            document.write('<div id="app"> <div id="bordureEtimage_polaroid"> <div id="bordure_polaroid"> <div id="image_polaroid"><img src="../img/img1.jpg"/> </div> <p id="info_principale_polaroid">' + pseudoCourant + ', ' + age_recup + " ans" + '</p> </div> </div>');
+            document.write('<div id="bordureEtimage_polaroid"> <div id="bordure_polaroid"> <div id="image_polaroid"><img src="../img/img2.jpg"/> </div> <p id="info_principale_polaroid">' + pseudoCourant + ', ' + age_recup + " ans" + '</p> </div>');
         }
         </script>
 
@@ -201,6 +222,8 @@
         
             if(isset($_GET['action']) && htmlspecialchars($_GET['action']) == "matching"){
         ?>
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
         
         <script type="text/javascript"> 
 
@@ -215,10 +238,33 @@
         }*/
 
         
-        document.write('<div class="composant_total"> <div class="composants_swipe"><div class="client"></div></div> <div class="composants_swipe"><div class="client"></div></div> <div class="composants_swipe"><div class="client"></div></div> <div class="composants_swipe"><div class="client"></div></div> <div class="composants_swipe"><div class="client"></div></div></div>')
+        //document.write('<div class="composant_total"> <div class="composants_swipe"><div class="client"></div></div> <div class="composants_swipe"><div class="client"></div></div> <div class="composants_swipe"><div class="client"></div></div> <div class="composants_swipe"><div class="client"></div></div> <div class="composants_swipe"><div class="client"></div></div></div>')
+
+        console.log("COMPOSANTS DU SWIPE0=", pseudoclients[iteratif_client_important[0]]);
+
+        //document.write('<div class="composant_total">
+
+        document.write('<style>');
+
+        for(var ij = 0; ij < iteratif_client_important.length; ij++){
+            document.write('<style>.client' + ij + ':after{font-weight: bold;font-size:110%;margin: 350px;top:50px;color: blue;content: "' + pseudoclients[iteratif_client_important[ij]] + '";}.client' + ij + '{background: white;font-size:100%;width: 320px;height: 320px;display: block;margin-top: 15px;margin-left: 15px; background-image: url("../img/img1.jpg");background-repeat: no-repeat; background-size:cover; margin:0;}');
+
+        }
+
+        document.write('</style>   <div class="composant_total">');
+
+        for(var ij = 0; ij < iteratif_client_important.length; ij++){
+            document.write('<div class="composants_swipe"><div class="client' + ij + '"> </div></div>');
+        }
+
+        document.write('</div>');
 
 
-
+          /***************************************************************************************
+          *@method FonctionSwipe: La fonction qui s'occupe du swipe de gauche à droite ou de droite à gauche, ainsi que du like, et à l'affichage des images et prénoms des clients.*
+          *@param  void: void                                         *
+          *@return : Renvoie un void                                                    *
+          ***************************************************************************************/
         function FonctionSwipe(){
             var composants_swipe_c = document.getElementsByClassName("composants_swipe");
             var composants_nombre = composants_swipe_c.length;
@@ -228,6 +274,7 @@
                 console.log("dans le for1");
                 composants_swipe_c[i].addEventListener("dblclick",function(){
                     console.log("DOUBLE CLICK = dans LIKE");
+                    //document.write("<p> Vous avez liké Cassandra </p>");
                     $(this).addClass('like').delay(1000).fadeOut(1);
 
                     if ( $(this).is(':last-child') ) {
