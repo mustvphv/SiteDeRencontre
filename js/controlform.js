@@ -1,8 +1,8 @@
-/*******************************************************************
+/*******************************************************************************
  *@method CheckInput(): Fonction qui regarde si tous nos champs sont correctes.*
- *@param  f: correspond aux champs du formulaire en paramètre.          *   
- *@return : Renvoie un booléen	                                   *  
- *******************************************************************/	
+ *@param  f: correspond aux champs du formulaire en paramètre.                 *   
+ *@return : Renvoie un booléen	                                               *  
+ ******************************************************************************/	
 
 function CheckInput(f){
     var pseudoOk   = CheckBasicInput(f.pseudo);
@@ -18,11 +18,11 @@ function CheckInput(f){
 
 }
 
-/*********************************************************************
+/************************************************************************************
  *@method CheckBasicInput: Fonction qui regarde si un champ a une longueur correcte.* 
- *@param  champ: le champ du formulaire                              *
- *@return : Renvoie un booléen                                       *
- *********************************************************************/	
+ *@param  champ: le champ du formulaire                                             *
+ *@return : Renvoie un booléen                                                      *
+ ***********************************************************************************/	
 
 function CheckBasicInput(champ){
     if(champ.value.length < 2 || champ.value.length > 25){
@@ -34,11 +34,11 @@ function CheckBasicInput(champ){
     }
 }
 
-/***************************************************************************************
+/************************************************************************************************
  *@method CheckEmail: Fonction qui test si on viens de rentrer un email avec un format correcte.*
- *@param  champ: le champ du formulaire                                                *
- *@return : Renvoie un booléen                                                         *
- ***************************************************************************************/
+ *@param  champ: le champ du formulaire                                                         *
+ *@return : Renvoie un booléen                                                                  *
+ ************************************************************************************************/
 
 function CheckEmail(champ){
     var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
@@ -53,12 +53,12 @@ function CheckEmail(champ){
 	}
 }
 
-/***************************************************************************************
+/************************************************************************************************
  *@method Highlight: Fonction qui surligne le background du champ en rouge si il y a une erreur.*
- *@param  champ: le champ du formulaire.                   *
- *@param erreur: un booléen                                       *
- *@return : Renvoie un void                                                            *
- ***************************************************************************************/
+ *@param  champ: le champ du formulaire.                                                        *
+ *@param erreur: un booléen                                                                     *
+ *@return : Renvoie un void                                                                     *
+ ***********************************************************************************************/
 			
 function Highlight(champ, erreur){
     if(erreur){
