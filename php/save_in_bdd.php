@@ -6,9 +6,9 @@
 <body>
 	<?php
         /***************************************************************************************
-        *@method CheckNickname: Fonction qui vérifie si il n'y a pas déjà un pseudo existant.*
-        *@param  void: void                                              *
-        *@return : Renvoie un void                                                        *
+        *@method CheckNickname: Fonction qui vérifie si il n'y a pas déjà un pseudo existant.  *
+        *@param  void: void                                                                    *
+        *@return : Renvoie un void                                                             *
         ***************************************************************************************/
 	function CheckNickname(){
 		$bdd    = mysqli_connect("localhost", "root", "", "SiteDeRecontre");
@@ -21,11 +21,11 @@
 		}
 	} 
 
-        /***************************************************************************************
+        /********************************************************************************************
         *@method RegisterClient: Fonction qui enregistre le pseudo, l'email et hash le mot de passe.*
-        *@param  void: void                                              *
-        *@return : Renvoie un void                                                        *
-        ***************************************************************************************/
+        *@param  void: void                                                                         *
+        *@return : Renvoie un void                                                                  *
+        ********************************************************************************************/
 	function RegisterClient(){
 		session_start();
 		$bdd = new PDO('mysql:host=localhost;dbname=SiteDeRecontre;charset=utf8', 'root', '');	
@@ -55,11 +55,11 @@
 		}
 	}
 
-        /***************************************************************************************
-        *@method SetAccountClient: Fonction qui enregistre les préférences, localisation dans les différentes tables de la base de données.*
-        *@param  void: void                                              *
-        *@return : Renvoie un void                                                        *
-        ***************************************************************************************/
+        /**********************************************************************************************************************
+        *@method SetAccountClient: Enregistre les préférences, localisation dans les différentes tables de la base de données.*
+        *@param  void: void                                                                                                   *
+        *@return : Renvoie un void                                                                                            *
+        **********************************************************************************************************************/
 	function SetAccountClient(){
 		session_start();
 		$bdd = new PDO('mysql:host=localhost;dbname=SiteDeRecontre;charset=utf8', 'root', '');
