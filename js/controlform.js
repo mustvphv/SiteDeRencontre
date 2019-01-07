@@ -1,7 +1,6 @@
-
 /*******************************************************************
- *@method : Fonction qui regarde si tous nos champs sont correctes.*
- *@param  : Prends les champs du formulaire en paramètre.          *   
+ *@method CheckInput(): Fonction qui regarde si tous nos champs sont correctes.*
+ *@param  f: correspond aux champs du formulaire en paramètre.          *   
  *@return : Renvoie un booléen	                                   *  
  *******************************************************************/	
 
@@ -20,13 +19,13 @@ function CheckInput(f){
 }
 
 /*********************************************************************
- *@method : Fonction qui regarde si un champ a une longueur correcte.* 
- *@param  : Prend en parametre le champ                              *
+ *@method CheckBasicInput: Fonction qui regarde si un champ a une longueur correcte.* 
+ *@param  champ: le champ du formulaire                              *
  *@return : Renvoie un booléen                                       *
  *********************************************************************/	
 
 function CheckBasicInput(champ){
-    if(champ.value.length < 2 || champ.value.length > 25){
+    if(champ.value.length < 2 || champ.value.length > 25){
 	    Highlight(champ, true);
 		return false;
 	}else{
@@ -36,8 +35,8 @@ function CheckBasicInput(champ){
 }
 
 /***************************************************************************************
- *@method : Fonction qui test si on viens de rentrer une email avec un format correcte.*
- *@param  : Prend en parametre le champ                                                *
+ *@method CheckEmail: Fonction qui test si on viens de rentrer un email avec un format correcte.*
+ *@param  champ: le champ du formulaire                                                *
  *@return : Renvoie un booléen                                                         *
  ***************************************************************************************/
 
@@ -55,8 +54,9 @@ function CheckEmail(champ){
 }
 
 /***************************************************************************************
- *@method : Fonction qui surligne le background du champ en rouge si il y a une erreur.*
- *@param  : Prend en paramètre le champ et le booléen true or false.                   *
+ *@method Highlight: Fonction qui surligne le background du champ en rouge si il y a une erreur.*
+ *@param  champ: le champ du formulaire.                   *
+ *@param erreur: un booléen                                       *
  *@return : Renvoie un void                                                            *
  ***************************************************************************************/
 			
@@ -67,4 +67,3 @@ function Highlight(champ, erreur){
 		champ.style.backgroundColor = "";
 	}
 }
-	
