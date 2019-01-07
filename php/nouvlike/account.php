@@ -259,13 +259,13 @@
 
           /***************************************************************************************
           *@method MettreClientLike: La fonction qui s'occupe de l'affichage graphique du like.*
-          *@param  pseudo_client: le pseudo du client a liker                                         *
+          *@param  void: void                                         *
           *@return : Renvoie un void                                                    *
           ***************************************************************************************/
         function MettreClientLike(pseudo_client) {
             var pLike1 = document.createElement("p");
 
-            var texteLike = document.createTextNode("Vous avez liké " + pseudo_client + "!");
+            var texteLike = document.createTextNode("Vous avez liké !");
 
             pLike1.appendChild(texteLike);
 
@@ -284,42 +284,14 @@
             var composants_nombre = composants_swipe_c.length;
             console.log("composants_swipeclenght =" + composants_swipe_c.length);
             console.log("dans la fonction2");
-
-
-            /*document.querySelector(".client0").addEventListener("dblclick",function(){
-                    MettreClientLike(pseudoclients[iteratif_client_important[0]]);
-            });
-
-            document.querySelector(".client1").addEventListener("dblclick",function(){
-                    MettreClientLike(pseudoclients[iteratif_client_important[1]]);
-            });
-
-            document.querySelector(".client2").addEventListener("dblclick",function(){
-                    MettreClientLike(pseudoclients[iteratif_client_important[2]]);
-            });
-
-            document.querySelector(".client3").addEventListener("dblclick",function(){
-                    MettreClientLike(pseudoclients[iteratif_client_important[3]]);
-            });*/
-
-            
-            for(var ic=0; ic<4 ;++ic){
-
-            document.querySelector(".client" + ic).addEventListener("dblclick",function(){
-                    MettreClientLike(pseudoclients[iteratif_client_important[ic]]);
-            });
-
-            }
-
-
            
             for (var i = 0; i < composants_nombre; i++) {
                 console.log("dans le for1");
                 composants_swipe_c[i].addEventListener("dblclick",function(){
                     console.log("DOUBLE CLICK = dans LIKE");
-                    
+                    MettreClientLike();
                     $(this).addClass('like').delay(1000).fadeOut(1);
-
+                     
                     if ( $(this).is(':last-child') ) {
                         $('.composants_swipe:nth-child(1)').removeClass ('swipe_gauche swipe_droit like').fadeIn(300);
                     } else {
