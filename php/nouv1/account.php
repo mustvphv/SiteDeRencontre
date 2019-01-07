@@ -7,9 +7,9 @@
         <?php
 	      
           /***************************************************************************************
-          *@method DisplayProfile: Affiche le profile d'un client.*
-          *@param  void: void                                              *
-          *@return : Renvoie un void                                                        *
+          *@method DisplayProfile: Affiche le profile d'un client.                               *
+          *@param  void: void                                                                    *
+          *@return : Renvoie un void                                                             *
           ***************************************************************************************/
            function DisplayProfile(){
          		session_start();
@@ -105,12 +105,12 @@
             console.log(clientCourrantMap.get(pseudoCourant)[0]);
             console.log(clientsMap);
                 
-           /***************************************************************************************
+           /***********************************************************************************************************************************
            *@method AlgorithmeDeMatching: Fonction qui gère l'algorithme de matching (les affinités entre deux clients (les deux paramètres)).*
-           *@param  client1: pseudo du client connecté (client courant)                                             *
-           *@param  client2: pseudo d'un des autres clients                                             *
-           *@return : Renvoie la valeur des points d'affinités (plus elle est élevée, plus il y a d'affinités entre les deux clients comparés                   *
-           ***************************************************************************************/         
+           *@param  client1: pseudo du client connecté (client courant)                                                                       *
+           *@param  client2: pseudo d'un des autres clients                                                                                   *
+           *@return : Renvoie la valeur des points d'affinités (plus elle est élevée, plus il y a d'affinités entre les deux clients comparés *                  *
+           ************************************************************************************************************************************/         
             function AlgorithmeDeMatching(client1, client2){
                 var somme_affinites = 0;
                 if(client1[1] == client2[1]){//comparaison département
@@ -134,12 +134,12 @@
                 return somme_affinites;
             }
 
-          /***************************************************************************************
+          /**************************************************************************************************************
           *@method ComparerValeurs: Permet de trier le tableau "resultatsComparaisonsTableau" dans l'ordre décroissant .*
-          *@param  val1: première valeur à comparer                                         *
-          *@param  val2: seconde valeur à comparer                                         *
-          *@return : Renvoie la différence entre la deuxième valeur et la première valeur.                                                       *
-          ***************************************************************************************/
+          *@param  val1: première valeur à comparer                                                                     *
+          *@param  val2: seconde valeur à comparer                                                                      *
+          *@return : Renvoie la différence entre la deuxième valeur et la première valeur.                              *                         *
+          ***************************************************************************************************************/
             function ComparerValeurs(val1, val2) {
                 var nouv_val1_str = val1.split('|');
                 var nouv_val2_str = val2.split('|');
@@ -154,11 +154,11 @@
                
         <script type="text/javascript">                
                         var iteratif_client_important = [];
-                        /***************************************************************************************
+                        /*****************************************************************************************************************************************************************************************************
                         *@method FonctionMatching(): Fonction qui va lancer tous le processus du matching, de l'algorithme du matching aux comparaisons des résultats d'affinités entre les clients et l'affichage graphique.*
-                        *@param  void: void                                     *
-                        *@return : void.                                                       *
-                        ***************************************************************************************/
+                        *@param  void: void                                                                                                                                                                                  *
+                        *@return : void.                                                                                                                                                                                     *
+                        ******************************************************************************************************************************************************************************************************/
                         function FonctionMatching(){
                             
                             var resultatsComparaisonsTableau = [];
@@ -190,9 +190,9 @@
         
         <script type="text/javascript">     
           /***************************************************************************************
-          *@method Display: affichage graphique des informations du client connecté .*
-          *@param  void: void                                         *
-          *@return : Renvoie un void                                                    *
+          *@method Display: affichage graphique des informations du client connecté .            *
+          *@param  void: void                                                                    *
+          *@return : Renvoie un void                                                             *
           ***************************************************************************************/
         function Display(){
             var age_recup = 25; //âge à récupérer
@@ -260,11 +260,11 @@
         document.write('</div>');
 
 
-          /***************************************************************************************
-          *@method FonctionSwipe: La fonction qui s'occupe du swipe de gauche à droite ou de droite à gauche, ainsi que du like, et à l'affichage des images et prénoms des clients.*
-          *@param  void: void                                         *
-          *@return : Renvoie un void                                                    *
-          ***************************************************************************************/
+          /**********************************************************************************************************************************************
+          *@method FonctionSwipe: swipe de gauche à droite ou de droite à gauche, ainsi que du like, et à l'affichage des images et prénoms des clients.*
+          *@param  void: void                                                                                                                           *
+          *@return : Renvoie un void                                                                                                                    *
+          **********************************************************************************************************************************************/
         function FonctionSwipe(){
             var composants_swipe_c = document.getElementsByClassName("composants_swipe");
             var composants_nombre = composants_swipe_c.length;
