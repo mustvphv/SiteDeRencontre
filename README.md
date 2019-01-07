@@ -60,6 +60,8 @@ On peut aussi liker les profils en double-cliquant.
 Le problème majeur dans notre projet, a été de faire communiquer le PHP et le Javascipt 
 ensemble (notamment lors des transferts de variables du PHP au Javascript).
 
+On a pas pu faire les messages entre les clients ainsi que le chargement des photos par le client lui-même par manque de temps.
+
 
 
 
