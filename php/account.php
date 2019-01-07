@@ -125,7 +125,7 @@
                    somme_affinites += 5;
                 }
                 else{
-                    somme_affinites -= 100;
+                    somme_affinites -= 10000;
                 }
                 if(client1[8] == client2[4]){//comparaison poids et prefpoids
                     somme_affinites += 5;
@@ -170,13 +170,15 @@
                             for (var i = 0; i < clientsMap.size; ++i){
                                 var resultat = AlgorithmeDeMatching(clientCourrantMap.get(pseudoCourant), clientsMap.get(pseudoclients[i]));
                                 console.log("resultat=" + resultat);
-                                resultatsComparaisonsTableau.push(resultat+'|'+i);
+                                if(resultat >= -100){
+                                    resultatsComparaisonsTableau.push(resultat+'|'+i);
+                                }
                             }
                             resultatsComparaisonsTableau.sort(ComparerValeurs);
                             
                             console.log("tableaux de comparaisons" + resultatsComparaisonsTableau);
                             
-                            var longueur_population = resultatsComparaisonsTableau.length/2;
+                            var longueur_population = resultatsComparaisonsTableau.length;
                             iteratif_client_important = [];
                             for (var i2 = 0; i2 < longueur_population; ++i2){
                                 var iteratif_str = resultatsComparaisonsTableau[i2].split('|');
