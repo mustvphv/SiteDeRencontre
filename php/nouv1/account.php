@@ -109,7 +109,7 @@
            *@method AlgorithmeDeMatching: Fonction qui gère l'algorithme de matching (les affinités entre deux clients (les deux paramètres)).*
            *@param  client1: pseudo du client connecté (client courant)                                                                       *
            *@param  client2: pseudo d'un des autres clients                                                                                   *
-           *@return : Renvoie la valeur des points d'affinités (plus elle est élevée, plus il y a d'affinités entre les deux clients comparés *                  *
+           *@return : Renvoie la valeur des points d'affinités (plus elle est élevée, plus il y a d'affinités entre les deux clients comparés *                  
            ************************************************************************************************************************************/         
             function AlgorithmeDeMatching(client1, client2){
                 var somme_affinites = 0;
@@ -138,7 +138,7 @@
           *@method ComparerValeurs: Permet de trier le tableau "resultatsComparaisonsTableau" dans l'ordre décroissant .*
           *@param  val1: première valeur à comparer                                                                     *
           *@param  val2: seconde valeur à comparer                                                                      *
-          *@return : Renvoie la différence entre la deuxième valeur et la première valeur.                              *                         *
+          *@return : Renvoie la différence entre la deuxième valeur et la première valeur.                              *                         
           ***************************************************************************************************************/
             function ComparerValeurs(val1, val2) {
                 var nouv_val1_str = val1.split('|');
