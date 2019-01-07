@@ -105,12 +105,12 @@
             console.log(clientCourrantMap.get(pseudoCourant)[0]);
             console.log(clientsMap);
                 
-           /***********************************************************************************************************************************
-           *@method AlgorithmeDeMatching: Fonction qui gère l'algorithme de matching (les affinités entre deux clients (les deux paramètres)).*
-           *@param  client1: pseudo du client connecté (client courant)                                                                       *
-           *@param  client2: pseudo d'un des autres clients                                                                                   *
-           *@return : Renvoie la valeur des points d'affinités (plus elle est élevée, plus il y a d'affinités entre les deux clients comparés *                  
-           ************************************************************************************************************************************/         
+           /**************************************************************************
+           *@method AlgorithmeDeMatching: Fonction qui gère l'algorithme de matching *
+           *@param  client1: pseudo du client connecté (client courant)              *
+           *@param  client2: pseudo d'un des autres clients                          *
+           *@return : la valeur des points d'affinités                               *                  
+           **************************************************************************/         
             function AlgorithmeDeMatching(client1, client2){
                 var somme_affinites = 0;
                 if(client1[1] == client2[1]){//comparaison département
@@ -154,11 +154,11 @@
                
         <script type="text/javascript">                
                         var iteratif_client_important = [];
-                        /*****************************************************************************************************************************************************************************************************
-                        *@method FonctionMatching(): Fonction qui va lancer tous le processus du matching, de l'algorithme du matching aux comparaisons des résultats d'affinités entre les clients et l'affichage graphique.*
-                        *@param  void: void                                                                                                                                                                                  *
-                        *@return : void.                                                                                                                                                                                     *
-                        ******************************************************************************************************************************************************************************************************/
+                        /*********************************************************************************************
+                        *@method FonctionMatching(): gère le processus du matching et propose un affichage graphique.*
+                        *@param  void: void                                                                          *
+                        *@return : void.                                                                             *
+                        *********************************************************************************************/
                         function FonctionMatching(){
                             
                             var resultatsComparaisonsTableau = [];
@@ -189,22 +189,25 @@
 		</script>
         
         <script type="text/javascript">     
-          /***************************************************************************************
-          *@method Display: affichage graphique des informations du client connecté .            *
-          *@param  void: void                                                                    *
-          *@return : Renvoie un void                                                             *
-          ***************************************************************************************/
-        function Display(){
-            var age_recup = 25; //âge à récupérer
-             
-                        
-            document.write('<p>' + "Votre pseudo:" + pseudoCourant + '<br> Votre mail:' + clientCourrantMap.get(pseudoCourant)[0] + '</p>');
-            document.write("<form method='post' action='account.php?action=matching'> <input type='submit' class = 'bouton1'>Trouver des personnes qui ont des affinités avec vous grâce à l'algorithme de matching</input></form>");
-            document.write('<p>' + "Polaroïd: <br><br><br>" + '</p>');
-            document.write('<p>' + pseudoCourant + ", " + age_recup + " ans<br><br>" + "Autres Infos: <br><br>" + '</p>');
-            document.write('<div id="bordureEtimage_polaroid"> <div id="bordure_polaroid"> <div id="image_polaroid"><img src="../img/img2.jpg"/> </div> <p id="info_principale_polaroid">' + pseudoCourant + ', ' + age_recup + " ans" + '</p> </div>');
-        }
-        </script>
+        
+		/***************************************************************************************
+		*@method Display: affichage graphique des informations du client connecté .            *
+		*@param  void: void                                                                    *
+		*@return : Renvoie un void                                                             *
+		***************************************************************************************/
+
+		function Display(){
+				var age_recup = 25; //âge à récupérer
+
+
+				document.write('<p>' + "Votre pseudo:" + pseudoCourant + '<br> Votre mail:' + clientCourrantMap.get(pseudoCourant)[0] + '</p>');
+				document.write("<form method='post' action='account.php?action=matching'> <input type='submit' class = 'bouton1'>Trouver des personnes qui ont des affinités avec vous grâce à l'algorithme de matching</input></form>");
+				document.write('<p>' + "Polaroïd: <br><br><br>" + '</p>');
+				document.write('<p>' + pseudoCourant + ", " + age_recup + " ans<br><br>" + "Autres Infos: <br><br>" + '</p>');
+				document.write('<div id="bordureEtimage_polaroid"> <div id="bordure_polaroid"> <div id="image_polaroid"><img src="../img/img2.jpg"/> </div> <p id="info_principale_polaroid">' + pseudoCourant + ', ' + age_recup + " ans" + '</p> </div>');
+		}
+        
+		</script>
 
         
 
@@ -260,11 +263,11 @@
         document.write('</div>');
 
 
-          /**********************************************************************************************************************************************
-          *@method FonctionSwipe: swipe de gauche à droite ou de droite à gauche, ainsi que du like, et à l'affichage des images et prénoms des clients.*
-          *@param  void: void                                                                                                                           *
-          *@return : Renvoie un void                                                                                                                    *
-          **********************************************************************************************************************************************/
+        /*********************************************************************************************
+        *@method FonctionSwipe: propose une interface pour swiper les clients, ainsi que de les liker*
+        *@param  void: void                                                                          *
+        *@return : Renvoie un void                                                                   *
+        *********************************************************************************************/
         function FonctionSwipe(){
             var composants_swipe_c = document.getElementsByClassName("composants_swipe");
             var composants_nombre = composants_swipe_c.length;
