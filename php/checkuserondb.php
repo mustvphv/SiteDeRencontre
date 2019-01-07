@@ -3,17 +3,20 @@
 <!DOCTYPE HTML>
 <html>
 <?php 
+        /***************************************************************************************
+        *@method CheckDataIsCorrect: Fonction qui vérifie si il existe un client.*
+        *@param  void: void                                              *
+        *@return : Renvoie un void                                                        *
+        ***************************************************************************************/
 	function CheckDataIsCorrect(){
 		session_start();
         
         $pseudo   = NULL;
 		$password = NULL;
-
 		if(isset($_POST['pseudo']) && empty($_POST['pseudo']) == false &&
 	   	   isset($_POST['pass'])   && empty($_POST['pass'])   == false){
 			$pseudo   = htmlspecialchars($_POST['pseudo']);
 			$password = hash('sha256', htmlspecialchars($_POST['pass']));
-
 		}else{
 			echo "<script type=\"text/javascript\">alert(\"Champs incorrectes\"); location=\"connexion.php\"</script>";
 				exit(1);
@@ -35,8 +38,6 @@
     
     	$answer->closeCursor();
     }
-
     CheckDataIsCorrect();
-
 ?>
-</html>	
+</html> 
